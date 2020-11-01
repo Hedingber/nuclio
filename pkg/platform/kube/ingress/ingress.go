@@ -389,16 +389,16 @@ func (m *Manager) compileDexAuthAnnotations(spec Spec) (map[string]string, error
 		return nil, errors.New("Oauth2 proxy URL is missing")
 	}
 
-	authURL := fmt.Sprintf("%s/oauth2/auth", oauth2ProxyURL)
+	//authURL := fmt.Sprintf("%s/oauth2/auth", oauth2ProxyURL)
 
 	annotations := map[string]string{
-		"nginx.ingress.kubernetes.io/auth-response-headers": "Authorization",
-		"nginx.ingress.kubernetes.io/auth-url":              authURL,
-		"nginx.ingress.kubernetes.io/configuration-snippet": `auth_request_set $name_upstream_1 $upstream_cookie__oauth2_proxy_1;
-access_by_lua_block {
-  if ngx.var.name_upstream_1 ~= "" then
-    ngx.header["Set-Cookie"] = "_oauth2_proxy_1=" .. ngx.var.name_upstream_1 .. ngx.var.auth_cookie:match("(; .*)")
-  end
+		//"nginx.ingress.kubernetes.io/auth-response-headers": "Authorization",
+		//"nginx.ingress.kubernetes.io/auth-url":              authURL,
+		"nginx.ingress.kubernetes.io/configuration-snippet": `proxy_set_header x-hedi "";
+proxy_set_header x-hedi-2 "";
+	proxy_set_header x-hedi-3 ""; 
+proxy_set_header x-hedi-4 "";
+proxy_set_header x-hedi-5 "";
 }`,
 	}
 
