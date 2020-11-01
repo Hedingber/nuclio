@@ -396,7 +396,7 @@ func (m *Manager) compileDexAuthAnnotations(spec Spec) (map[string]string, error
 		//"nginx.ingress.kubernetes.io/auth-url":              authURL,
 		"nginx.ingress.kubernetes.io/configuration-snippet": `proxy_set_header x-hedi "";
 proxy_set_header x-hedi-2 "";
-	proxy_set_header x-hedi-3 ""; 
+proxy_set_header x-hedi-3 ""; 
 proxy_set_header x-hedi-4 "";
 proxy_set_header x-hedi-5 "";
 }`,
